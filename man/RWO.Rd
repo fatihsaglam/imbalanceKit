@@ -2,7 +2,7 @@
 % Please edit documentation in R/resample_RWO.R
 \name{RWO}
 \alias{RWO}
-\title{Random Walk Oversampling (SMOTE)}
+\title{Random Walk Oversampling (RWO, 2014)}
 \usage{
 RWO(x, y, ovRate = 1)
 }
@@ -27,6 +27,8 @@ a list with resampled dataset.
 Resampling with RWO
 }
 \details{
+\strong{Year: 2014.}
+
 RWO (Zhang and Li, 2014) is an oversampling method which generates data using
 variable standard error in a way that it preserves the variances of all variables.
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/resample_RSLSMOTE.R
 \name{RSLSMOTE}
 \alias{RSLSMOTE}
-\title{Relocating safe-level SMOTE with minority outcast handling}
+\title{Relocating Safe-Level SMOTE (RSLSMOTE, 2016)}
 \usage{
 RSLSMOTE(x, y, k1 = 5, k2 = 5, ovRate = 1)
 }
@@ -35,6 +35,8 @@ class distribution towards the original minority class distribution in the
 feature space.
 }
 \details{
+\strong{Year: 2016.}
+
 In Safe-level SMOTE (SLS), a safe-level threshold is used to control the number of synthetic
 samples generated from each minority instance. This threshold is calculated
 based on the number of minority and majority instances in the local

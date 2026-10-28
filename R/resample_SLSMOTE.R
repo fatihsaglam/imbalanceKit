@@ -1,4 +1,4 @@
-#' @title  Safe-level Synthetic Minority Oversampling Technique
+#' @title  Safe-Level SMOTE (SLSMOTE, 2009)
 #'
 #' @description \code{SLSMOTE()} generates synthetic samples by considering a
 #' safe level of the nearest minority class examples.
@@ -12,6 +12,8 @@
 #' the size of the largest class (halves are rounded up). Default is 1 meaning
 #' full balance. A vector with one value per class is also accepted.
 #' @details
+#' \strong{Year: 2009.}
+#'
 #' SLSMOTE uses the safe-level distance metric to identify the minority class
 #' samples that are safe to oversample. Safe-level distance measures the
 #' distance between a minority class sample and its k-nearest minority class

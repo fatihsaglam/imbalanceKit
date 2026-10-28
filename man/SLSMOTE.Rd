@@ -2,7 +2,7 @@
 % Please edit documentation in R/resample_SLSMOTE.R
 \name{SLSMOTE}
 \alias{SLSMOTE}
-\title{Safe-level Synthetic Minority Oversampling Technique}
+\title{Safe-Level SMOTE (SLSMOTE, 2009)}
 \usage{
 SLSMOTE(x, y, k1 = 5, k2 = 5, ovRate = 1)
 }
@@ -32,6 +32,8 @@ a list with resampled dataset.
 safe level of the nearest minority class examples.
 }
 \details{
+\strong{Year: 2009.}
+
 SLSMOTE uses the safe-level distance metric to identify the minority class
 samples that are safe to oversample. Safe-level distance measures the
 distance between a minority class sample and its k-nearest minority class

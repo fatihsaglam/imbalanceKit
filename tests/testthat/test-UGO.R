@@ -106,3 +106,39 @@ test_that("UGO respects the maximum data size", {
            lambda_max = 1.2)
   expect_lte(nrow(m$x_new), 1.2 * 2 * nrow(d$x) + ceiling(0.1 * nrow(d$x)))
 })
+
+test_that("built-in classifiers return valid probabilities", {
+  set.seed(1)
+  x <- rbind(matrix(rnorm(200, 0), ncol = 2), matrix(rnorm(60, 2), ncol = 2),
+             matrix(rnorm(40, 4), ncol = 2))
+  y3 <- factor(rep(c("a", "b", "c"), c(100, 30, 20)))
+  y2 <- droplevels(y3[y3 != "c"]); x2 <- x[y3 != "c", ]
+  for (cl in c("CART", "LogReg", "KNN", "NaiveBayes", "LDA", "rpart")) {
+    for (case in list(list(x2, y2), list(x, y3))) {
+      f <- imbalanceKit:::get_classifier(cl)
+      p <- imbalanceKit:::predict_class_probs(f, case[[1]], case[[2]], case[[1]])
+      expect_equal(dim(p), c(nrow(case[[1]]), nlevels(case[[2]])), info = cl)
+      expect_equal(unname(rowSums(p)), rep(1, nrow(p)), tolerance = 1e-6, info = cl)
+      expect_true(all(p >= -1e-12 & p <= 1 + 1e-12), info = cl)
+      acc <- mean(levels(case[[2]])[max.col(p)] == as.character(case[[2]]))
+      expect_gt(acc, 0.6)
+    }
+  }
+  skip_if_not_installed("nnet")
+  p <- imbalanceKit:::predict_class_probs(imbalanceKit:::get_classifier("NNET"), x, y3, x)
+  expect_equal(unname(rowSums(p)), rep(1, nrow(p)), tolerance = 1e-6)
+  skip_if_not_installed("randomForest")
+  p <- imbalanceKit:::predict_class_probs(imbalanceKit:::get_classifier("RF"), x, y3, x)
+  expect_equal(unname(rowSums(p)), rep(1, nrow(p)), tolerance = 1e-6)
+})
+
+test_that("UGO runs with every built-in classifier, also with 3 classes", {
+  d3 <- make_ugo(n = c(150, 40, 20), shift = 1.5)
+  for (cl in c("CART", "LogReg", "KNN", "NaiveBayes", "LDA")) {
+    set.seed(1)
+    m <- UGO(d3$x, d3$y, type = "SMOTE", classifier = cl)
+    expect_equal(nrow(m$x_new), nrow(d3$x) + nrow(m$x_syn), info = cl)
+    expect_false(anyNA(m$x_syn), info = cl)
+  }
+  expect_error(UGO(d3$x, d3$y, classifier = "nope"))
+})

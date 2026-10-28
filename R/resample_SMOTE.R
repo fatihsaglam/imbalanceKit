@@ -1,4 +1,4 @@
-#' @title  Synthetic Minority Oversampling Technique (SMOTE)
+#' @title  Synthetic Minority Oversampling Technique (SMOTE, 2002)
 #'
 #' @description Resampling with SMOTE.
 #'
@@ -12,6 +12,8 @@
 #' @param ... not used.
 #'
 #' @details
+#' \strong{Year: 2002.}
+#'
 #' SMOTE (Chawla et al., 2002) is an oversampling method which creates links
 #' between positive samples and nearest neighbors and generates synthetic
 #' samples along that link.

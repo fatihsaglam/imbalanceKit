@@ -2,7 +2,7 @@
 % Please edit documentation in R/resample_BiSMOTE.R
 \name{BiSMOTE}
 \alias{BiSMOTE}
-\title{Bi-directional SMOTE (BiSMOTE)}
+\title{Bi-directional SMOTE (BiSMOTE, 2027)}
 \usage{
 BiSMOTE(x, y, k = 5, ovRate = 1, ...)
 }
@@ -33,6 +33,8 @@ a list with resampled dataset.
 Resampling with bi-directional SMOTE.
 }
 \details{
+\strong{Year: 2027.}
+
 BiSMOTE (Saglam & Yamak, 2027) is a geometrically constrained oversampling
 method. For each synthetic sample, a center sample and one of its \code{k}
 nearest neighbors from the same class are selected. Unlike SMOTE, which places

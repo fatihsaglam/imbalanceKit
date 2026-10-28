@@ -1,4 +1,4 @@
-#' @title  SMOTE with boosting (SMOTEWB)
+#' @title  SMOTE with Boosting (SMOTEWB, 2022)
 #'
 #' @description Resampling with SMOTE with boosting.
 #'
@@ -18,6 +18,8 @@
 #' @param ... not used.
 #'
 #' @details
+#' \strong{Year: 2022.}
+#'
 #' SMOTEWB (Saglam & Cengiz, 2022) is a SMOTE-based oversampling method which
 #' can handle noisy data and adaptively decides the appropriate number of neighbors
 #' to link during resampling with SMOTE.

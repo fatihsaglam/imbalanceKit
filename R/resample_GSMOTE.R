@@ -1,4 +1,4 @@
-#' @title  Geometric Synthetic Minority Oversamplnig Technique (GSMOTE)
+#' @title  Geometric SMOTE (GSMOTE, 2019)
 #'
 #' @description Resampling with GSMOTE.
 #'
@@ -16,6 +16,8 @@
 #' the size of the largest class (halves are rounded up). Default is 1 meaning
 #' full balance. A vector with one value per class is also accepted.
 #' @details
+#' \strong{Year: 2019.}
+#'
 #' GSMOTE (Douzas & Bacao, 2019) is an oversampling method which creates synthetic
 #' samples geometrically around selected minority samples. Details are in the
 #' paper (Douzas & Bacao, 2019).

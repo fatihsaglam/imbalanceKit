@@ -2,7 +2,7 @@
 % Please edit documentation in R/resample_MCSMOTE.R
 \name{MCSMOTE}
 \alias{MCSMOTE}
-\title{Markov Chain SMOTE (MCSMOTE)}
+\title{Markov Chain SMOTE (MCSMOTE, 2025)}
 \usage{
 MCSMOTE(x, y, thresh_qntl = 0.1, ovRate = 1, tol = 1e-04, max_iter = 1000, ...)
 }
@@ -42,6 +42,8 @@ a list with resampled dataset.
 Transition matrix driven oversampling with MCSMOTE.
 }
 \details{
+\strong{Year: 2025.}
+
 MCSMOTE (Saglam & Cengiz, 2025) models oversampling as a Markov chain over
 the samples of the class to be oversampled. A Gaussian kernel similarity
 matrix with sample specific bandwidths is calculated from the pairwise

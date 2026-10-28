@@ -1,4 +1,4 @@
-#' @title  Bi-directional SMOTE (BiSMOTE)
+#' @title  Bi-directional SMOTE (BiSMOTE, 2027)
 #'
 #' @description Resampling with bi-directional SMOTE.
 #'
@@ -14,6 +14,8 @@
 #' @param ... not used.
 #'
 #' @details
+#' \strong{Year: 2027.}
+#'
 #' BiSMOTE (Saglam & Yamak, 2027) is a geometrically constrained oversampling
 #' method. For each synthetic sample, a center sample and one of its \code{k}
 #' nearest neighbors from the same class are selected. Unlike SMOTE, which places

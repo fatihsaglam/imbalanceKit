@@ -8,7 +8,8 @@ make_multiclass <- function(n = c(120, 40, 15), seed = 1) {
 }
 
 resamplers <- c("ROS", "RWO", "ROSE", "SMOTE", "ADASYN", "BLSMOTE", "SLSMOTE",
-                "RSLSMOTE", "GSMOTE", "SMOTEWB", "BiSMOTE", "MCSMOTE")
+                "RSLSMOTE", "GSMOTE", "SMOTEWB", "BiSMOTE", "MCSMOTE", "EBSMOTE", "GQEO",
+                "LEAO", "SyMProD")
 
 test_that("all resamplers balance three classes", {
   d <- make_multiclass()
@@ -128,5 +129,33 @@ test_that("UGO works with three classes for every generator type", {
     expect_equal(nrow(m$x_new), nrow(d$x) + nrow(m$x_syn), info = ty)
     expect_equal(levels(m$y_syn), levels(d$y), info = ty)
     expect_false(anyNA(m$x_syn), info = ty)
+  }
+})
+
+test_that("EBSMOTE, GQEO, LEAO and SyMProD handle tiny classes and options", {
+  d <- make_multiclass(n = c(60, 20, 2))
+  for (nm in c("EBSMOTE", "GQEO", "LEAO", "SyMProD")) {
+    f <- get(nm, asNamespace("imbalanceKit"))
+    m <- suppressWarnings(f(d$x, d$y))
+    expect_equal(as.vector(table(m$y_new)), c(60L, 60L, 60L), info = nm)
+  }
+  d2 <- make_multiclass(n = c(80, 25))
+  for (pt in c("bagging", "logistic", "knn", "nb")) {
+    m <- LEAO(d2$x, d2$y, prob_type = pt)
+    expect_equal(as.vector(table(m$y_new)), c(80L, 80L), info = pt)
+    expect_false(anyNA(m$x_syn), info = pt)
+  }
+  expect_error(LEAO(d2$x, d2$y, step_min = 1, step_max = 0.1), "step_min")
+  expect_gt(nrow(GQEO(d2$x, d2$y, check_planarity = FALSE)$x_syn), 0)
+  expect_warning(GQEO(d2$x, d2$y, k = 2), "quadrilateral")
+})
+
+test_that("GQEO samples lie inside the convex hull of their class (bounding box)", {
+  d <- make_multiclass(n = c(100, 30))
+  set.seed(1)
+  m <- GQEO(d$x, d$y)
+  x_min <- d$x[d$y == "c2", ]
+  for (j in 1:3) {
+    expect_true(all(m$x_syn[, j] >= min(x_min[, j]) - 1e-8 & m$x_syn[, j] <= max(x_min[, j]) + 1e-8))
   }
 })

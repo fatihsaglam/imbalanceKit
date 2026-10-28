@@ -1,4 +1,4 @@
-#' @title  Randomly Over Sampling Examples
+#' @title  Random Over-Sampling Examples (ROSE, 2014)
 #'
 #' @description Generates synthetic data for each class to balance imbalanced
 #' datasets using kernel density estimations. Can be used for multiclass datasets.
@@ -13,6 +13,8 @@
 #' the size of the largest class (halves are rounded up). Default is 1 meaning
 #' full balance. A vector with one value per class is also accepted.
 #' @details
+#' \strong{Year: 2014.}
+#'
 #' Randomly Over Sampling Examples (ROSE) (Menardi and Torelli, 2014) is an
 #' oversampling method which uses conditional kernel densities to balance dataset.
 #' There is already an R package called `ROSE` (Lunardon et al., 2014).

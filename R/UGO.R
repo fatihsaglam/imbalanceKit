@@ -1,20 +1,25 @@
-#' @title  Uncertainty Guided Oversampling (UGO)
+#' @title  Uncertainty Guided Oversampling (UGO, 2026)
 #'
-#' @description Classifier specific oversampling guided by the uncertainty of
-#' a classifier.
+#' @description UGO (Saglam & Cengiz, 2026) is not a resampling method on its
+#' own. It is a classifier-guided procedure that \emph{uses} a base oversampling
+#' method (\code{type}) and a classifier: the classifier decides which
+#' samples are informative, which class needs more samples and when to stop.
 #'
 #' @param x feature matrix or dataframe.
 #' @param y a factor class variable. Can have more than two classes.
 #' @param type base oversampling method used to generate synthetic samples
 #' around the selected informative samples. One of \code{"RWO"}, \code{"SMOTE"},
 #' \code{"ROS"} or \code{"MCSMOTE"}. Default is \code{"RWO"}.
-#' @param classifier classifier used to calculate uncertainty. Either
-#' \code{"rpart"}, \code{"randomForest"} (needs the \pkg{randomForest} package)
-#' or a function \code{function(x_train, y_train, x_test, ...)} that returns a
-#' matrix of class probabilities for the rows of \code{x_test}, with one column
-#' per level of \code{y_train}. UGO is classifier specific, so the classifier
-#' that will be used for the final model should be used here. Default is
-#' \code{"randomForest"}.
+#' @param classifier classifier used to calculate the uncertainty. One of the
+#' built-in classifiers \code{"CART"} (\pkg{rpart}), \code{"RF"}
+#' (\pkg{randomForest}), \code{"LogReg"} (logistic regression, one-vs-rest for
+#' more than two classes), \code{"KNN"} (\pkg{FNN}), \code{"NaiveBayes"}
+#' (Gaussian), \code{"LDA"} or \code{"NNET"} (\pkg{nnet}), or a function
+#' \code{function(x_train, y_train, x_test, ...)} that returns a matrix of class
+#' probabilities for the rows of \code{x_test}, with one column per level of
+#' \code{y_train}. The old names \code{"rpart"} and \code{"randomForest"} are
+#' still accepted. UGO is classifier specific, so the classifier that will be
+#' used for the final model should be used here. Default is \code{"RF"}.
 #' @param comparison test used to compare the average uncertainty of the
 #' classes: \code{"anova"} (Welch's one-way test) or \code{"kruskal"}
 #' (Kruskal-Wallis). Generation stops when classes are not significantly
@@ -38,7 +43,8 @@
 #' \code{lambda_max * K * n} (\eqn{\phi} in the paper). Default is 2.5.
 #' @param alpha significance level of the comparison test used as the stopping
 #' criterion. Default is 0.05.
-#' @param classifier_args list of additional arguments for the classifier.
+#' @param classifier_args list of additional arguments for the classifier
+#' (e.g. \code{list(k = 7)} for \code{"KNN"}).
 #' @param generator_args list of additional arguments for the base method
 #' \code{type}. Only \code{thresh_qntl}, \code{tol} and \code{max_iter} of
 #' \code{\link{MCSMOTE}} are used.
@@ -46,7 +52,7 @@
 #' @param ... not used.
 #'
 #' @details
-#' UGO (Saglam & Cengiz, 2026) is an iterative oversampling method which uses
+#' \strong{Year: 2026.} UGO (Saglam & Cengiz, 2026) is an iterative oversampling method which uses
 #' the uncertainty of a classifier as in active learning. At each iteration,
 #' a classifier is trained on the current data and the modified margin
 #' uncertainty (the highest probability of the other classes minus the
@@ -96,11 +102,15 @@
 #'
 #' # resampling
 #' if (requireNamespace("randomForest", quietly = TRUE)) {
-#'   m <- UGO(x = x, y = y, type = "SMOTE", classifier = "randomForest")
+#'   m <- UGO(x = x, y = y, type = "SMOTE", classifier = "RF")
 #'   m$stop_reason
 #'
 #'   plot(m$x_new, col = m$y_new)
 #' }
+#'
+#' # built-in classifiers that need no extra package
+#' m <- UGO(x = x, y = y, type = "SMOTE", classifier = "LDA")
+#' m$stop_reason
 #'
 #' # any classifier that returns class probabilities can be used
 #' f_logistic <- function(x_train, y_train, x_test, ...) {
@@ -118,7 +128,7 @@
 UGO <- function(x,
                 y,
                 type = c("RWO", "SMOTE", "ROS", "MCSMOTE"),
-                classifier = "randomForest",
+                classifier = "RF",
                 comparison = c("anova", "kruskal"),
                 prop_generate = 0.10,
                 prop_sampling = 0.5,

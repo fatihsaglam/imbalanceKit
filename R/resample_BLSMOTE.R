@@ -1,4 +1,4 @@
-#' @title  Borderline Synthetic Minority Oversampling Technique
+#' @title  Borderline-SMOTE (BLSMOTE, 2005)
 #'
 #' @description \code{BLSMOTE()} applies BLSMOTE (Borderline-SMOTE) which is a
 #' variation of the SMOTE algorithm that generates synthetic samples only in the
@@ -14,6 +14,8 @@
 #' the size of the largest class (halves are rounded up). Default is 1 meaning
 #' full balance. A vector with one value per class is also accepted.
 #' @details
+#' \strong{Year: 2005.}
+#'
 #' BLSMOTE works by focusing on the instances that are near the decision
 #' boundary between the minority and majority classes, known as borderline
 #' instances. These instances are more informative and potentially more

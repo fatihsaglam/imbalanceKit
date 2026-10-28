@@ -1,4 +1,4 @@
-#' @title  Adaptive Synthetic Sampling
+#' @title  Adaptive Synthetic Sampling (ADASYN, 2008)
 #'
 #' @description Generates synthetic data for minority class to balance imbalanced
 #' datasets using ADASYN.
@@ -11,6 +11,8 @@
 #' the size of the largest class (halves are rounded up). Default is 1 meaning
 #' full balance. A vector with one value per class is also accepted.
 #' @details
+#' \strong{Year: 2008.}
+#'
 #' Adaptive Synthetic Sampling (ADASYN) is an extension of the Synthetic Minority Over-sampling Technique
 #' (SMOTE) algorithm, which is used to generate synthetic examples for the
 #' minority class (He et al., 2008). In contrast to SMOTE, ADASYN adaptively generates synthetic

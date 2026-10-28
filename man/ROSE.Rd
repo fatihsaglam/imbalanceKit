@@ -2,7 +2,7 @@
 % Please edit documentation in R/resample_ROSE.R
 \name{ROSE}
 \alias{ROSE}
-\title{Randomly Over Sampling Examples}
+\title{Random Over-Sampling Examples (ROSE, 2014)}
 \usage{
 ROSE(x, y, h = 1, ovRate = 1)
 }
@@ -30,6 +30,8 @@ Generates synthetic data for each class to balance imbalanced
 datasets using kernel density estimations. Can be used for multiclass datasets.
 }
 \details{
+\strong{Year: 2014.}
+
 Randomly Over Sampling Examples (ROSE) (Menardi and Torelli, 2014) is an
 oversampling method which uses conditional kernel densities to balance dataset.
 There is already an R package called `ROSE` (Lunardon et al., 2014).

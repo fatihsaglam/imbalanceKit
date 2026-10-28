@@ -2,7 +2,7 @@
 % Please edit documentation in R/resample_SMOTE.R
 \name{SMOTE}
 \alias{SMOTE}
-\title{Synthetic Minority Oversampling Technique (SMOTE)}
+\title{Synthetic Minority Oversampling Technique (SMOTE, 2002)}
 \usage{
 SMOTE(x, y, k = 5, ovRate = 1, ...)
 }
@@ -31,6 +31,8 @@ a list with resampled dataset.
 Resampling with SMOTE.
 }
 \details{
+\strong{Year: 2002.}
+
 SMOTE (Chawla et al., 2002) is an oversampling method which creates links
 between positive samples and nearest neighbors and generates synthetic
 samples along that link.

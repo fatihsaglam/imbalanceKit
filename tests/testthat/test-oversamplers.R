@@ -1,6 +1,6 @@
 # Oversamplers that add synthetic samples and return the full interface
 oversamplers <- c("ADASYN", "BLSMOTE", "BiSMOTE", "GSMOTE", "MCSMOTE", "ROS", "ROSE", "RSLSMOTE", "RWO",
-                  "SLSMOTE", "SMOTE", "SMOTEWB")
+                  "SLSMOTE", "SMOTE", "SMOTEWB", "EBSMOTE", "GQEO", "LEAO", "SyMProD")
 
 test_that("oversamplers return the common structure", {
   d <- make_imbalanced()

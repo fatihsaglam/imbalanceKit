@@ -63,3 +63,69 @@ bibentry(
   doi = "10.1016/j.eswa.2026.134648",
   textVersion = paste("Sağlam, F., & Yamak, U. (2027). Bi-SMOTE: bi-directional oversampling for reducing class overlap and synthetic noise. Expert Systems with Applications, 334, 134648. https://doi.org/10.1016/j.eswa.2026.134648")
 )
+
+bibentry(
+  bibtype = "Article",
+  header = "To cite the DatRel method in publications use:",
+  title = "DatRel: a noise-tolerant data relocation approach for effective synthetic data generation in imbalanced classifiers",
+  author = c(person("Fatih", "Sağlam")),
+  journal = "Machine Learning",
+  year = "2025",
+  doi = "10.1007/s10994-025-06755-8",
+  textVersion = paste("Sağlam, F. (2025). DatRel: a noise-tolerant data relocation approach for effective synthetic data generation in imbalanced classifiers. Machine Learning. https://doi.org/10.1007/s10994-025-06755-8")
+)
+
+bibentry(
+  bibtype = "InProceedings",
+  header = "To cite the EBSMOTE method in publications use:",
+  title = "EBSMOTE: Evaluation-based synthetic minority oversampling technique for imbalanced dataset learning",
+  author = c(person("A. S.", "Hussein"),
+                  person("B.", "Diallo"),
+                  person("J.", "Liu")),
+  booktitle = "2019 IEEE 14th International Conference on Intelligent Systems and Knowledge Engineering (ISKE)",
+  year = "2019",
+  pages = "1226--1233",
+  publisher = "IEEE",
+  textVersion = paste("Hussein, A. S., Diallo, B., & Liu, J. (2019). EBSMOTE: Evaluation-based synthetic minority oversampling technique for imbalanced dataset learning. In 2019 IEEE 14th International Conference on Intelligent Systems and Knowledge Engineering (ISKE) (pp. 1226-1233). IEEE.")
+)
+
+bibentry(
+  bibtype = "Article",
+  header = "To cite the GQEO method in publications use:",
+  title = "GQEO: Nearest neighbor graph-based generalized quadrilateral element oversampling for class-imbalance problem",
+  author = c(person("Q.", "Dai"),
+                  person("L.", "Wang"),
+                  person("J.", "Zhang"),
+                  person("W.", "Ding"),
+                  person("L.", "Chen")),
+  journal = "Neural Networks",
+  year = "2025",
+  volume = "184",
+  pages = "107107",
+  textVersion = paste("Dai, Q., Wang, L., Zhang, J., Ding, W., & Chen, L. (2025). GQEO: Nearest neighbor graph-based generalized quadrilateral element oversampling for class-imbalance problem. Neural Networks, 184, 107107.")
+)
+
+bibentry(
+  bibtype = "Article",
+  header = "To cite the LEAO method in publications use:",
+  title = "Local entropy-adversarial oversampling for imbalanced datasets",
+  author = c(person("L.", "Tao")),
+  journal = "Neurocomputing",
+  year = "2025",
+  pages = "131959",
+  textVersion = paste("Tao, L. (2025). Local entropy-adversarial oversampling for imbalanced datasets. Neurocomputing, 131959.")
+)
+
+bibentry(
+  bibtype = "Article",
+  header = "To cite the SyMProD method in publications use:",
+  title = "A synthetic minority based on probabilistic distribution (SyMProD) oversampling for imbalanced datasets",
+  author = c(person("I.", "Kunakorntum"),
+                  person("W.", "Hinthong"),
+                  person("P.", "Phunchongharn")),
+  journal = "IEEE Access",
+  year = "2020",
+  volume = "8",
+  pages = "114692--114704",
+  textVersion = paste("Kunakorntum, I., Hinthong, W., & Phunchongharn, P. (2020). A synthetic minority based on probabilistic distribution (SyMProD) oversampling for imbalanced datasets. IEEE Access, 8, 114692-114704.")
+)

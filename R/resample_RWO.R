@@ -1,4 +1,4 @@
-#' @title  Random Walk Oversampling (SMOTE)
+#' @title  Random Walk Oversampling (RWO, 2014)
 #'
 #' @description Resampling with RWO
 #'
@@ -9,6 +9,8 @@
 #' the size of the largest class (halves are rounded up). Default is 1 meaning
 #' full balance. A vector with one value per class is also accepted.
 #' @details
+#' \strong{Year: 2014.}
+#'
 #' RWO (Zhang and Li, 2014) is an oversampling method which generates data using
 #' variable standard error in a way that it preserves the variances of all variables.
 #'

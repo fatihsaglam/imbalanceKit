@@ -2,7 +2,7 @@
 % Please edit documentation in R/resample_SMOTEWB.R
 \name{SMOTEWB}
 \alias{SMOTEWB}
-\title{SMOTE with boosting (SMOTEWB)}
+\title{SMOTE with Boosting (SMOTEWB, 2022)}
 \usage{
 SMOTEWB(
   x,
@@ -51,6 +51,8 @@ a list with resampled dataset.
 Resampling with SMOTE with boosting.
 }
 \details{
+\strong{Year: 2022.}
+
 SMOTEWB (Saglam & Cengiz, 2022) is a SMOTE-based oversampling method which
 can handle noisy data and adaptively decides the appropriate number of neighbors
 to link during resampling with SMOTE.

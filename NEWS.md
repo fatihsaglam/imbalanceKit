@@ -9,9 +9,38 @@ First release. `imbalanceKit` collects the resampling methods of the former
 * `MCSMOTE()`: transition matrix driven oversampling (Sağlam & Cengiz, 2025).
   Works with more than two classes.
 * `UGO()`: uncertainty guided oversampling (Sağlam & Cengiz, 2026), with
-  `"RWO"`, `"SMOTE"`, `"ROS"` and `"MCSMOTE"` as base methods. The classifier is
-  chosen with the `classifier` argument (`"randomForest"`, `"rpart"` or any
-  function that returns class probabilities).
+  `"RWO"`, `"SMOTE"`, `"ROS"` and `"MCSMOTE"` as base methods. UGO is not a
+  resampler by itself but a procedure that uses a base method and a
+  classifier. The classifier is chosen with the `classifier` argument: one of
+  the seven built-in classifiers (`"CART"`, `"RF"`, `"LogReg"`, `"KNN"`,
+  `"NaiveBayes"`, `"LDA"`, `"NNET"`) or any function that returns class
+  probabilities. The old names `"rpart"` and `"randomForest"` still work.
+* `DatRel()` (Sağlam, 2025) relocates the synthetic samples of any base
+  oversampler (`method`) into the class region defined by a pure and proper
+  class cover. The cover algorithm of the `rcccd` package is included, so
+  `rcccd` is not needed. `DatRel_relocate()` relocates user supplied samples.
+
+* `EBSMOTE()`, `GQEO()`, `LEAO()` and `SyMProD()`: further oversamplers that need
+  no deep learning libraries. The first, third and fourth are defined for two
+  classes; with more classes every class is oversampled against the union of
+  the others. `LEAO()` estimates class probabilities with bagged `rpart` trees,
+  logistic regression, k-nearest neighbours or naive Bayes (`prob_type`).
+
+## Documentation
+
+* The year of publication of every method is part of its help page title and is
+  listed in the README.
+* References were added for `EBSMOTE()`, `GQEO()`, `LEAO()` and `SyMProD()`
+  (also in `citation()`).
+
+## Metrics
+
+* `evaluate()` calculates `ACC`, `BACC`, `F1`, `GMEAN`, `MCC`, `ROCAUC`,
+  `PRAUC`, `Brier`, `PBrier` (penalized), `BBrier` (balanced), `ECE`, `BECE`
+  (balanced), `P4` and `IAM` plus `PRECISION`, `RECALL`, `SPECIFICITY`, `KAPPA`
+  and `LOGLOSS`, or the selected ones. Each metric is also a function of its own.
+* Metrics are defined for two or more classes; class-wise metrics have an
+  `average` argument (`"binary"`, `"macro"`, `"micro"`, `"weighted"`).
 
 ## Methods carried over from SMOTEWB 1.2.5
 

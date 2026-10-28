@@ -2,7 +2,7 @@
 % Please edit documentation in R/resample_GSMOTE.R
 \name{GSMOTE}
 \alias{GSMOTE}
-\title{Geometric Synthetic Minority Oversamplnig Technique (GSMOTE)}
+\title{Geometric SMOTE (GSMOTE, 2019)}
 \usage{
 GSMOTE(
   x,
@@ -48,6 +48,8 @@ a list with resampled dataset.
 Resampling with GSMOTE.
 }
 \details{
+\strong{Year: 2019.}
+
 GSMOTE (Douzas & Bacao, 2019) is an oversampling method which creates synthetic
 samples geometrically around selected minority samples. Details are in the
 paper (Douzas & Bacao, 2019).

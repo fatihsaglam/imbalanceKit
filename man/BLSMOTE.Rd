@@ -2,7 +2,7 @@
 % Please edit documentation in R/resample_BLSMOTE.R
 \name{BLSMOTE}
 \alias{BLSMOTE}
-\title{Borderline Synthetic Minority Oversampling Technique}
+\title{Borderline-SMOTE (BLSMOTE, 2005)}
 \usage{
 BLSMOTE(x, y, k1 = 5, k2 = 5, type = c("type1", "type2"), ovRate = 1)
 }
@@ -34,6 +34,8 @@ variation of the SMOTE algorithm that generates synthetic samples only in the
 vicinity of the borderline instances in imbalanced datasets.
 }
 \details{
+\strong{Year: 2005.}
+
 BLSMOTE works by focusing on the instances that are near the decision
 boundary between the minority and majority classes, known as borderline
 instances. These instances are more informative and potentially more

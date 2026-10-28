@@ -2,7 +2,7 @@
 % Please edit documentation in R/resample_ADASYN.R
 \name{ADASYN}
 \alias{ADASYN}
-\title{Adaptive Synthetic Sampling}
+\title{Adaptive Synthetic Sampling (ADASYN, 2008)}
 \usage{
 ADASYN(x, y, k = 5, ovRate = 1)
 }
@@ -30,6 +30,8 @@ Generates synthetic data for minority class to balance imbalanced
 datasets using ADASYN.
 }
 \details{
+\strong{Year: 2008.}
+
 Adaptive Synthetic Sampling (ADASYN) is an extension of the Synthetic Minority Over-sampling Technique
 (SMOTE) algorithm, which is used to generate synthetic examples for the
 minority class (He et al., 2008). In contrast to SMOTE, ADASYN adaptively generates synthetic

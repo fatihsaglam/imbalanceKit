@@ -1,0 +1,34 @@
+Package: imbalanceKit
+Type: Package
+Title: Resampling Methods and Tools for Imbalanced Classification
+Version: 0.1.0
+Authors@R: 
+    c(person("Fatih", "Saglam", email = "saglamf89@gmail.com", 
+    role = c("aut", "cre"), 
+    comment = c(ORCID = "0000-0002-2084-2008")))
+Description: A collection of resampling methods for class imbalance in
+    classification problems. Includes the oversampling methods SMOTE with
+    boosting (SMOTEWB) by F. Sağlam and M. A. Cengiz (2022)
+    <doi:10.1016/j.eswa.2022.117023>, Markov chain SMOTE (MCSMOTE) by
+    F. Sağlam and M. A. Cengiz (2025) <doi:10.1016/j.asoc.2025.113906>,
+    uncertainty guided oversampling (UGO) by F. Sağlam and M. A. Cengiz (2026)
+    <doi:10.1016/j.knosys.2026.115886>, and bi-directional SMOTE (BiSMOTE) by
+    F. Sağlam and U. Yamak (2027) <doi:10.1016/j.eswa.2026.134648>, together
+    with commonly used alternatives such as SMOTE, ADASYN, Borderline-SMOTE,
+    Safe-Level-SMOTE, geometric SMOTE, random oversampling and undersampling.
+    The methods share the same interface: they take a feature matrix and a
+    factor class variable and return the resampled data together with the
+    synthetic samples.
+Depends: R (>= 4.0.0)
+Imports: 
+    stats,
+    FNN,
+    rpart,
+    Rfast
+Suggests: 
+    randomForest,
+    testthat (>= 3.0.0)
+License: MIT + file LICENSE
+Encoding: UTF-8
+Config/testthat/edition: 3
+RoxygenNote: 7.3.2

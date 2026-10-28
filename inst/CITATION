@@ -1,0 +1,65 @@
+bibentry(
+  bibtype = "Manual",
+  header = "To cite the imbalanceKit package in publications use:",
+  title = "imbalanceKit: Resampling Methods and Tools for Imbalanced Classification",
+  author = person("Fatih", "Sağlam", email = "saglamf89@gmail.com",
+                  comment = c(ORCID = "0000-0002-2084-2008")),
+  year = format(Sys.Date(), "%Y"),
+  note = paste("R package version", meta$Version),
+  url = "https://github.com/fatihsaglam/imbalanceKit",
+  textVersion = paste0("Sağlam, F. (", format(Sys.Date(), "%Y"),
+                       "). imbalanceKit: Resampling Methods and Tools for Imbalanced ",
+                       "Classification. R package version ", meta$Version, ".")
+)
+
+bibentry(
+  bibtype = "Article",
+  header = "To cite the SMOTEWB method in publications use:",
+  title = "A novel SMOTE-based resampling technique trough noise detection and the boosting procedure",
+  author = c(person("Fatih", "Sağlam"), person("Mehmet Ali", "Cengiz")),
+  journal = "Expert Systems with Applications",
+  year = "2022",
+  volume = "200",
+  pages = "117023",
+  doi = "10.1016/j.eswa.2022.117023",
+  textVersion = paste("Sağlam, F., & Cengiz, M. A. (2022). A novel SMOTE-based resampling technique trough noise detection and the boosting procedure. Expert Systems with Applications, 200, 117023. https://doi.org/10.1016/j.eswa.2022.117023")
+)
+
+bibentry(
+  bibtype = "Article",
+  header = "To cite the MCSMOTE method in publications use:",
+  title = "MCSMOTE: A transition matrix-driven oversampling technique for class imbalance",
+  author = c(person("Fatih", "Sağlam"), person("Mehmet Ali", "Cengiz")),
+  journal = "Applied Soft Computing",
+  year = "2025",
+  volume = "185",
+  pages = "113906",
+  doi = "10.1016/j.asoc.2025.113906",
+  textVersion = paste("Sağlam, F., & Cengiz, M. A. (2025). MCSMOTE: A transition matrix-driven oversampling technique for class imbalance. Applied Soft Computing, 185, 113906. https://doi.org/10.1016/j.asoc.2025.113906")
+)
+
+bibentry(
+  bibtype = "Article",
+  header = "To cite the UGO method in publications use:",
+  title = "Uncertainty guided oversampling: A classifier-specific approach for effective handling of class imbalance in machine learning",
+  author = c(person("Fatih", "Sağlam"), person("Mehmet Ali", "Cengiz")),
+  journal = "Knowledge-Based Systems",
+  year = "2026",
+  volume = "342",
+  pages = "115886",
+  doi = "10.1016/j.knosys.2026.115886",
+  textVersion = paste("Sağlam, F., & Cengiz, M. A. (2026). Uncertainty guided oversampling: A classifier-specific approach for effective handling of class imbalance in machine learning. Knowledge-Based Systems, 342, 115886. https://doi.org/10.1016/j.knosys.2026.115886")
+)
+
+bibentry(
+  bibtype = "Article",
+  header = "To cite the BiSMOTE method in publications use:",
+  title = "Bi-SMOTE: bi-directional oversampling for reducing class overlap and synthetic noise",
+  author = c(person("Fatih", "Sağlam"), person("Umut", "Yamak")),
+  journal = "Expert Systems with Applications",
+  year = "2027",
+  volume = "334",
+  pages = "134648",
+  doi = "10.1016/j.eswa.2026.134648",
+  textVersion = paste("Sağlam, F., & Yamak, U. (2027). Bi-SMOTE: bi-directional oversampling for reducing class overlap and synthetic noise. Expert Systems with Applications, 334, 134648. https://doi.org/10.1016/j.eswa.2026.134648")
+)

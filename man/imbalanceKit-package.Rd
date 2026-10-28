@@ -11,5 +11,10 @@ A collection of resampling methods for class imbalance in classification problem
 \author{
 \strong{Maintainer}: Fatih Saglam \email{saglamf89@gmail.com} (\href{https://orcid.org/0000-0002-2084-2008}{ORCID})
 
+Authors:
+\itemize{
+  \item Fatih Saglam \email{saglamf89@gmail.com} (\href{https://orcid.org/0000-0002-2084-2008}{ORCID})
+}
+
 }
 \keyword{internal}

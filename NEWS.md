@@ -15,10 +15,12 @@ First release. `imbalanceKit` collects the resampling methods of the former
   the seven built-in classifiers (`"CART"`, `"RF"`, `"LogReg"`, `"KNN"`,
   `"NaiveBayes"`, `"LDA"`, `"NNET"`) or any function that returns class
   probabilities. The old names `"rpart"` and `"randomForest"` still work.
-* `DatRel()` (Sağlam, 2025) relocates the synthetic samples of any base
-  oversampler (`method`) into the class region defined by a pure and proper
-  class cover. The cover algorithm of the `rcccd` package is included, so
-  `rcccd` is not needed. `DatRel_relocate()` relocates user supplied samples.
+* `DatRel()` (Sağlam, 2025) is a post-processing method: `DatRel(x, y, x_syn, y_syn)`
+  moves synthetic samples from any source that fall outside their class
+  region back into it (pure and proper class cover; works with more than two
+  classes). The cover algorithm of the `rcccd` package is included, so `rcccd`
+  is not needed. `oversampleDatRel()` generates the samples with a base method
+  first.
 
 * `EBSMOTE()`, `GQEO()`, `LEAO()` and `SyMProD()`: further oversamplers that need
   no deep learning libraries. The first, third and fourth are defined for two

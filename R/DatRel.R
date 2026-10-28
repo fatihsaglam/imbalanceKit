@@ -1,6 +1,107 @@
 #' @title  Data Relocation (DatRel, 2025)
 #'
-#' @description DatRel (Saglam, 2025) makes the synthetic samples of any
+#' @description DatRel (Saglam, 2025) is a post-processing method for
+#' synthetic samples. Synthetic samples that fall outside the region covered by
+#' their class are moved back into it. The synthetic samples can come from any
+#' oversampling method; \code{DatRel} only needs the original data and the
+#' synthetic data.
+#'
+#' @param x feature matrix of the original data.
+#' @param y a factor class variable of the original data. Can have more than
+#' two classes.
+#' @param x_syn feature matrix of the synthetic samples.
+#' @param y_syn factor (or vector) with the class of each synthetic sample.
+#' Every class is relocated against the union of the other classes
+#' (one-versus-rest), so any number of classes is allowed.
+#' @param proportion proportion of the samples of a class that has to be
+#' covered by the dominating balls. Default is 1 (all samples).
+#' @param p_of overflow proportion: the radii of the balls are multiplied by
+#' \code{1 + p_of}, so the synthetic samples may stay slightly outside of the
+#' class region. Default is 0.
+#'
+#' @details
+#' \strong{Year: 2025.} For every class a ball is placed around each sample
+#' whose radius is the distance to the nearest sample of the other classes
+#' (times \code{1 + p_of}), so that the ball contains no sample of another
+#' class. A small set of dominating samples whose balls cover the class (pure
+#' and proper class cover catch digraph, PCCCD) is selected greedily; the cover
+#' algorithm is the one of the \pkg{rcccd} package. Each synthetic sample is
+#' assigned to the dominating ball of its class with the smallest ratio of
+#' distance to radius. If it is outside that ball, it is moved onto the border
+#' of the ball along the line to the dominating sample.
+#'
+#' @return a list with
+#'  \item{x_new}{Original data followed by the relocated synthetic samples.}
+#'  \item{y_new}{Class variable of \code{x_new}.}
+#'  \item{x_syn}{Relocated synthetic samples, in the order of the input.}
+#'  \item{y_syn}{Classes of the synthetic samples.}
+#'  \item{i_dominant, x_dominant, radii_dominant, cover_proportion,
+#'  n_relocated}{Lists with one element per class that has synthetic samples:
+#'  indices and coordinates of the dominating samples, radii of their balls,
+#'  proportion of the class covered, and the number of relocated samples.}
+#'
+#' @author Fatih Saglam, saglamf89@gmail.com
+#'
+#' @references
+#' Saglam, F. (2025). DatRel: a noise-tolerant data relocation approach for
+#' effective synthetic data generation in imbalanced classifiers. Machine
+#' Learning. doi:10.1007/s10994-025-06755-8
+#'
+#' @examples
+#' set.seed(1)
+#' x <- rbind(matrix(rnorm(400, 3, 1), ncol = 2), matrix(rnorm(40, 5, 1), ncol = 2))
+#' y <- factor(rep(c("negative", "positive"), c(200, 20)))
+#'
+#' m0 <- SMOTE(x, y)                       # any method, or your own samples
+#' m <- DatRel(x, y, m0$x_syn, m0$y_syn)
+#' m$n_relocated
+#'
+#' @export
+DatRel <- function(x, y, x_syn, y_syn, proportion = 1, p_of = 0) {
+  x <- check_xy(x, y)
+  y <- droplevels(as.factor(y))
+  class_names <- levels(y)
+  x_syn <- as.matrix(x_syn)
+  if (ncol(x_syn) != ncol(x)) {
+    stop("x_syn must have the same number of columns as x")
+  }
+  if (length(y_syn) != nrow(x_syn)) {
+    stop("y_syn must have one element per row of x_syn")
+  }
+  y_syn <- factor(as.character(y_syn), levels = class_names)
+  if (anyNA(y_syn)) {
+    stop("y_syn has classes that are not in y")
+  }
+  if (!is.numeric(proportion) || length(proportion) != 1 || proportion <= 0 || proportion > 1) {
+    stop("proportion must be in (0, 1]")
+  }
+  if (!is.numeric(p_of) || length(p_of) != 1 || p_of < 0) {
+    stop("p_of must be a non-negative number")
+  }
+
+  x_rel <- x_syn
+  extras <- list(i_dominant = list(), x_dominant = list(), radii_dominant = list(),
+                 cover_proportion = list(), n_relocated = list())
+  for (cl in class_names) {
+    in_syn <- which(y_syn == cl)
+    if (length(in_syn) == 0) next
+    is_cl <- y == cl
+    r <- relocate_datrel(x[is_cl, , drop = FALSE], x[!is_cl, , drop = FALSE],
+                         x_syn[in_syn, , drop = FALSE], proportion, p_of)
+    x_rel[in_syn, ] <- r$x_syn
+    for (e in names(extras)) extras[[e]][[cl]] <- r[[e]]
+  }
+  colnames(x_rel) <- colnames(x)
+  c(list(x_new = rbind(x, x_rel),
+         y_new = factor(c(as.character(y), as.character(y_syn)), levels = class_names),
+         x_syn = x_rel,
+         y_syn = y_syn),
+    extras)
+}
+
+#' @title  Oversampling followed by DatRel (2025)
+#'
+#' @description Generates synthetic samples with a base method and post-processes them with \code{\link{DatRel}}. DatRel (Saglam, 2025) makes the synthetic samples of any
 #' oversampling method safer: synthetic samples that fall outside the regions
 #' that the class covers are moved back into them. DatRel is not an
 #' oversampling method itself; it relocates the samples generated by a base
@@ -65,14 +166,14 @@
 #'            matrix(rnorm(100, 5, 1), ncol = 2, nrow = 50))
 #' y <- as.factor(c(rep("negative", 1000), rep("positive", 50)))
 #'
-#' m <- DatRel(x = x, y = y, method = "SMOTE", k = 7)
+#' m <- oversampleDatRel(x = x, y = y, method = "SMOTE", k = 7)
 #' m$n_relocated
 #' plot(m$x_new, col = m$y_new)
 #'
-#' @rdname DatRel
+#' @rdname oversampleDatRel
 #' @export
 
-DatRel <- function(x, y, method = "SMOTE", ovRate = 1, proportion = 1, p_of = 0, ...) {
+oversampleDatRel <- function(x, y, method = "SMOTE", ovRate = 1, proportion = 1, p_of = 0, ...) {
   get_generator(method)
   if (!is.numeric(proportion) || length(proportion) != 1 || proportion <= 0 || proportion > 1) {
     stop("proportion must be in (0, 1]")
@@ -87,52 +188,3 @@ DatRel <- function(x, y, method = "SMOTE", ovRate = 1, proportion = 1, p_of = 0,
                              "cover_proportion", "n_relocated"))
 }
 
-#' @title  Relocation step of DatRel
-#'
-#' @description Relocates given synthetic samples of one class with the
-#' DatRel procedure. Use this when the synthetic samples come from a method
-#' that is not in \code{\link{DatRel}}.
-#'
-#' @param x feature matrix of the original data.
-#' @param y a factor class variable of the original data.
-#' @param x_syn matrix of synthetic samples of the class \code{class_pos}.
-#' @param class_pos class of the synthetic samples. If \code{NULL}, the
-#' smallest class.
-#' @inheritParams DatRel
-#'
-#' @return a list with the relocated synthetic samples \code{x_syn},
-#' \code{i_dominant}, \code{x_dominant}, \code{radii_dominant},
-#' \code{cover_proportion} and the number of relocated samples
-#' \code{n_relocated}.
-#'
-#' @references
-#' Saglam, F. (2025). DatRel: a noise-tolerant data relocation approach for
-#' effective synthetic data generation in imbalanced classifiers. Machine
-#' Learning. doi:10.1007/s10994-025-06755-8
-#'
-#' @examples
-#' set.seed(1)
-#' x <- rbind(matrix(rnorm(400, 3, 1), ncol = 2), matrix(rnorm(40, 5, 1), ncol = 2))
-#' y <- factor(rep(c("negative", "positive"), c(200, 20)))
-#' x_syn <- SMOTE(x, y)$x_syn
-#' r <- DatRel_relocate(x, y, x_syn, class_pos = "positive")
-#' r$n_relocated
-#'
-#' @export
-DatRel_relocate <- function(x, y, x_syn, class_pos = NULL, proportion = 1, p_of = 0) {
-  x <- check_xy(x, y)
-  y <- droplevels(y)
-  if (is.null(class_pos)) {
-    class_pos <- names(which.min(table(y)))
-  }
-  if (!(class_pos %in% levels(y))) {
-    stop("class_pos is not a class of y")
-  }
-  x_syn <- as.matrix(x_syn)
-  if (ncol(x_syn) != ncol(x)) {
-    stop("x_syn must have the same number of columns as x")
-  }
-  is_pos <- y == class_pos
-  relocate_datrel(x[is_pos, , drop = FALSE], x[!is_pos, , drop = FALSE], x_syn,
-                  proportion = proportion, p_of = p_of)
-}

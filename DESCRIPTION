@@ -35,4 +35,4 @@ Suggests:
 License: MIT + file LICENSE
 Encoding: UTF-8
 Config/testthat/edition: 3
-RoxygenNote: 7.3.2
+Config/roxygen2/version: 8.1.0

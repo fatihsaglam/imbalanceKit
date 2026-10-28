@@ -49,7 +49,7 @@ method.
 
 | Year | Function | Method | What it needs |
 |---|---|---|---|
-| 2025 | `DatRel()` | Data relocation: moves synthetic samples that fall outside the class region back into it (Sağlam, 2025, *Machine Learning*) | a base `method` (any oversampler above) |
+| 2025 | `DatRel()` | Data relocation, a post-processing step: moves synthetic samples that fall outside the class region back into it (Sağlam, 2025, *Machine Learning*) | `x`, `y` and any synthetic samples `x_syn`, `y_syn` (`oversampleDatRel()` runs a base oversampler first) |
 | 2026 | `UGO()` | Uncertainty guided oversampling (Sağlam & Cengiz, 2026, *Knowledge-Based Systems*) | a base `type` and a `classifier` |
 
 `UGO()` has seven built-in classifiers (`"CART"`, `"RF"`, `"LogReg"`, `"KNN"`,
@@ -93,8 +93,9 @@ plot(m$x_new, col = m$y_new)
 m <- UGO(x, y, type = "SMOTE", classifier = "LDA")
 table(m$y_new)
 
-# DatRel relocates the samples of a base method into the class region
-m <- DatRel(x, y, method = "SMOTE", k = 7)
+# DatRel post-processes synthetic samples (any method, any number of classes)
+m0 <- SMOTE(x, y, k = 7)                    # or any synthetic samples
+m <- DatRel(x, y, m0$x_syn, m0$y_syn)
 m$n_relocated
 ```
 

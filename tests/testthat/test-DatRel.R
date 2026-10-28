@@ -20,7 +20,7 @@ test_that("cover_pcccd follows the greedy rule of rcccd", {
 test_that("DatRel keeps synthetic samples inside the dominating balls", {
   d <- make_imbalanced()
   set.seed(1)
-  m <- DatRel(d$x, d$y, method = "SMOTE", k = 5)
+  m <- oversampleDatRel(d$x, d$y, method = "SMOTE", k = 5)
   expect_equal(nrow(m$x_new), nrow(d$x) + nrow(m$x_syn))
   expect_equal(levels(m$y_new), levels(d$y))
   expect_equal(unname(m$x_new[seq_len(nrow(d$x)), ]), unname(d$x))
@@ -41,7 +41,7 @@ test_that("DatRel equals the base method when nothing is outside", {
   set.seed(3)
   base <- SMOTE(d$x, d$y)
   set.seed(3)
-  m <- DatRel(d$x, d$y, method = "SMOTE", p_of = 1e6)
+  m <- oversampleDatRel(d$x, d$y, method = "SMOTE", p_of = 1e6)
   expect_equal(m$x_syn, base$x_syn)
   expect_equal(m$n_relocated[["positive"]], 0)
 })
@@ -64,22 +64,43 @@ test_that("DatRel works with all base methods and with 3 classes", {
              matrix(rnorm(40, 4), ncol = 2))
   y <- factor(rep(c("a", "b", "c"), c(150, 40, 20)))
   for (me in c("ROS", "RWO", "ROSE", "SMOTE", "ADASYN", "BLSMOTE", "SLSMOTE", "MCSMOTE")) {
-    m <- suppressWarnings(DatRel(x, y, method = me))
+    m <- suppressWarnings(oversampleDatRel(x, y, method = me))
     expect_equal(table(m$y_new)[["b"]], 150, info = me)
     expect_equal(table(m$y_new)[["c"]], 150, info = me)
     expect_false(anyNA(m$x_syn), info = me)
   }
-  expect_error(DatRel(x, y, method = "foo"))
-  expect_error(DatRel(x, y, proportion = 2))
-  expect_error(DatRel(x, y, p_of = -1))
+  expect_error(oversampleDatRel(x, y, method = "foo"))
+  expect_error(oversampleDatRel(x, y, proportion = 2))
+  expect_error(oversampleDatRel(x, y, p_of = -1))
 })
 
-test_that("DatRel_relocate relocates user-supplied samples", {
-  x_pos <- rbind(c(0, 0), c(0.1, 0))
-  x_neg <- rbind(c(2, 0), c(2, 1))
-  x <- rbind(x_pos, x_neg)
+test_that("DatRel post-processes user-supplied synthetic samples", {
+  x <- rbind(c(0, 0), c(0.1, 0), c(2, 0), c(2, 1))
   y <- factor(c("p", "p", "n", "n"))
-  r <- DatRel_relocate(x, y, rbind(c(5, 0)), class_pos = "p")
-  expect_equal(unname(r$x_syn[1, ]), c(2, 0))
-  expect_error(DatRel_relocate(x, y, rbind(c(5, 0)), class_pos = "z"))
+  m <- DatRel(x, y, rbind(c(5, 0), c(0.05, 0)), factor(c("p", "p")))
+  expect_equal(unname(m$x_syn[1, ]), c(2, 0))
+  expect_equal(unname(m$x_syn[2, ]), c(0.05, 0))
+  expect_equal(m$n_relocated$p, 1L)
+  expect_equal(nrow(m$x_new), 6)
+  expect_equal(as.character(m$y_new), c(as.character(y), "p", "p"))
+  expect_error(DatRel(x, y, rbind(c(5, 0)), factor("z")))
+  expect_error(DatRel(x, y, rbind(c(5, 0)), factor(c("p", "p"))))
+})
+
+test_that("DatRel handles several classes and keeps the input order", {
+  set.seed(5)
+  x <- rbind(matrix(rnorm(200), ncol = 2), matrix(rnorm(60, 2), ncol = 2),
+             matrix(rnorm(40, 4), ncol = 2))
+  y <- factor(rep(c("a", "b", "c"), c(100, 30, 20)))
+  s <- SMOTE(x, y)
+  ord <- sample(nrow(s$x_syn))
+  m <- DatRel(x, y, s$x_syn[ord, ], s$y_syn[ord])
+  expect_equal(as.character(m$y_syn), as.character(s$y_syn[ord]))
+  expect_setequal(names(m$n_relocated), c("b", "c"))
+  # each synthetic sample is inside a ball of its own class
+  for (cl in c("b", "c")) {
+    xs <- m$x_syn[m$y_syn == cl, , drop = FALSE]
+    ratio <- imbalanceKit:::cross_dist(m$x_dominant[[cl]], xs) / m$radii_dominant[[cl]]
+    expect_true(all(apply(ratio, 2, min) <= 1 + 1e-8))
+  }
 })

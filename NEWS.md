@@ -1,5 +1,6 @@
 # imbalanceKit (development version)
 
+* Complexity measures for imbalance, overlap and noise: `IR`, `C1`, `C2`, `ID`, `F1`, `F1v`, `F2`, `F3`, `F4`, `N1`-`N4`, `LSC`, `R`, `R_aug` and the types of minority examples (`SAFE`, `BORDERLINE`, `RARE`, `OUTLIER`), each as `complexity_<NAME>()`, and `complexity()` for all or selected ones.
 * New oversamplers `RadiusSMOTE()` (Pradipta et al., 2021) and `VSSMOTE()` (Qiu et al., 2025). Both work with more than two classes (one-versus-rest) and can be used as `method` in `oversampleDatRel()`.
 
 # imbalanceKit 0.1.0

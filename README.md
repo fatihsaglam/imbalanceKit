@@ -76,6 +76,25 @@ evaluate(y_true, y_prob = prob)                         # everything
 evaluate(y_true, y_prob = prob, metrics = c("MCC", "IAM", "BECE"))
 ```
 
+## Complexity measures
+
+Measures of class imbalance, overlap and noise from the literature
+(higher = more imbalanced / harder). Each is a function of its own;
+`complexity()` calculates all of them or the selected ones.
+
+| Group | Measures |
+|---|---|
+| Imbalance | `complexity_IR()`, `complexity_C1()`, `complexity_C2()`, `complexity_ID()` |
+| Overlap (features) | `complexity_F1()`, `complexity_F1v()`, `complexity_F2()`, `complexity_F3()`, `complexity_F4()` |
+| Overlap (neighbourhood) | `complexity_N1()`, `complexity_N2()`, `complexity_N3()`, `complexity_N3_bal()`, `complexity_N4()`, `complexity_LSC()` |
+| Overlap + imbalance | `complexity_R()` (Oh, 2011), `complexity_R_aug()` (Borsos et al., 2018) |
+| Noise (types of minority examples) | `complexity_SAFE()`, `complexity_BORDERLINE()`, `complexity_RARE()`, `complexity_OUTLIER()` |
+
+```r
+complexity(x, y)                                  # everything
+complexity(x, y, measures = c("IR", "R", "R_aug", "N4"), seed = 1)
+```
+
 ## Example
 
 ```r

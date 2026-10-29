@@ -125,3 +125,8 @@ function and all together through
   [`complexity_RARE()`](https://fatihsaglam.github.io/imbalanceKit/reference/complexity_measures.md)
   [`complexity_OUTLIER()`](https://fatihsaglam.github.io/imbalanceKit/reference/complexity_measures.md)
   : Complexity Measures for Imbalanced Classification Data
+
+## Data
+
+- [`banana`](https://fatihsaglam.github.io/imbalanceKit/reference/banana.md)
+  : Banana data

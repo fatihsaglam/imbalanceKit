@@ -18,7 +18,14 @@ generated synthetic samples (`x_syn`, `y_syn`).
 # development version
 # install.packages("remotes")
 remotes::install_github("fatihsaglam/imbalanceKit")
+
+# with the vignette (takes a little longer)
+remotes::install_github("fatihsaglam/imbalanceKit", build_vignettes = TRUE)
+vignette("imbalanceKit")
 ```
+
+The vignette is also available on the [package
+website](https://fatihsaglam.github.io/imbalanceKit/).
 
 ## Methods
 

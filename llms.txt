@@ -18,7 +18,14 @@ generated synthetic samples (`x_syn`, `y_syn`).
 # development version
 # install.packages("remotes")
 remotes::install_github("fatihsaglam/imbalanceKit")
+
+# with the vignette (takes a little longer)
+remotes::install_github("fatihsaglam/imbalanceKit", build_vignettes = TRUE)
+vignette("imbalanceKit")
 ```
+
+The vignette is also available on the [package
+website](https://fatihsaglam.github.io/imbalanceKit/).
 
 ## Methods
 
@@ -263,3 +270,14 @@ function and all together through
   [`complexity_OUTLIER()`](https://fatihsaglam.github.io/imbalanceKit/reference/complexity_measures.md)
   : Complexity Measures for Imbalanced Classification Data
 
+## Data
+
+- [`banana`](https://fatihsaglam.github.io/imbalanceKit/reference/banana.md)
+  : Banana data
+
+# Articles
+
+### All vignettes
+
+- [Getting started with
+  imbalanceKit](https://fatihsaglam.github.io/imbalanceKit/articles/imbalanceKit.md):

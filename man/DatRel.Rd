@@ -49,7 +49,8 @@ whose radius is the distance to the nearest sample of the other classes
 (times \code{1 + p_of}), so that the ball contains no sample of another
 class. A small set of dominating samples whose balls cover the class (pure
 and proper class cover catch digraph, PCCCD) is selected greedily; the cover
-algorithm is the one of the \pkg{rcccd} package. Each synthetic sample is
+algorithm is the C++ implementation of the \pkg{rcccd} package, which
+is included here (the \pkg{imbalanceDatRel} package is not needed any more). Each synthetic sample is
 assigned to the dominating ball of its class with the smallest ratio of
 distance to radius. If it is outside that ball, it is moved onto the border
 of the ball along the line to the dominating sample.

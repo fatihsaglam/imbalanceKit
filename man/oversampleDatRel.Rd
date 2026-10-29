@@ -68,8 +68,8 @@ balls cover the class (pure and proper class cover catch digraph, PCCCD) is
 selected greedily. Each synthetic sample is assigned to the dominating ball
 with the smallest ratio of distance to radius. If the sample is outside of
 that ball, it is moved onto the border of the ball along the line to the
-dominating sample. The cover algorithm is the one of the
-\pkg{rcccd} package.
+dominating sample. The cover algorithm is the C++ implementation of the
+\pkg{rcccd} package, which is included here.
 }
 \examples{
 

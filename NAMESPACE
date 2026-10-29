@@ -69,6 +69,7 @@ importFrom(FNN,
   get.knnx,
   knnx.index
 )
+importFrom(Rcpp,sourceCpp)
 importFrom(Rfast,Dist)
 importFrom(stats,
   kruskal.test,
@@ -79,3 +80,4 @@ importFrom(stats,
   runif,
   sd
 )
+useDynLib(imbalanceKit, .registration = TRUE)

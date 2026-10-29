@@ -1,5 +1,10 @@
 # imbalanceKit (development version)
 
+* The `imbalanceDatRel` package (DatRel) is now part of `imbalanceKit`; it is
+  not needed any more. The class cover algorithm of
+  the `rcccd` package is included as compiled C++ code (needs `Rcpp`) that does
+  not build the cover matrix, so `DatRel()` and `oversampleDatRel()` are much
+  faster and need less memory than the former R implementation.
 * Complexity measures for imbalance, overlap and noise: `IR`, `C1`, `C2`, `ID`, `F1`, `F1v`, `F2`, `F3`, `F4`, `N1`-`N4`, `LSC`, `R`, `R_aug` and the types of minority examples (`SAFE`, `BORDERLINE`, `RARE`, `OUTLIER`), each as `complexity_<NAME>()`, and `complexity()` for all or selected ones.
 * New oversamplers `RadiusSMOTE()` (Pradipta et al., 2021) and `VSSMOTE()` (Qiu et al., 2025). Both work with more than two classes (one-versus-rest) and can be used as `method` in `oversampleDatRel()`.
 

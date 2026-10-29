@@ -1,26 +1,14 @@
-# Pure and proper class cover (PCCCD) used by DatRel. This is a direct port of
-# f_cover_pcccd() of the rcccd package (Saglam), including its tie-breaking:
-# the number of points each ball covers is computed once from M, covered
-# points are excluded by setting their count to -1, and the first maximum is
-# selected at every step.
+# Pure and proper class cover (PCCCD) used by DatRel. The greedy cover is the
+# C++ function f_cover_pcccd() of the rcccd package (Saglam): the number of
+# points each ball covers is computed once from M, covered points are excluded
+# by setting their count to -1, and the first maximum is selected at every step.
 #
-# M: logical/0-1 matrix, M[i, j] = TRUE if the ball of point i covers point j.
+# M: 0-1 matrix, M[i, j] = 1 if the ball of point i covers point j.
 # thresh: number of points that has to be covered.
 #' @noRd
 cover_pcccd <- function(M, thresh) {
-  n <- nrow(M)
-  M <- M == 1
-  covered <- rep(FALSE, n)
-  n_covers <- as.numeric(rowSums(M))
-  i_dominant <- integer(0)
-  while (sum(covered) < thresh) {
-    n_covers[covered] <- -1
-    i_selected <- which.max(n_covers)
-    i_dominant <- c(i_dominant, i_selected)
-    covered <- covered | M[i_selected, ]
-    covered[i_selected] <- TRUE
-  }
-  list(i_dominant = i_dominant, cover_proportion = sum(covered) / n)
+  storage.mode(M) <- "integer"
+  f_cover_pcccd(thresh, M)
 }
 
 # Euclidean distances between the rows of a and the rows of b

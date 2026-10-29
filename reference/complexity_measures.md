@@ -213,9 +213,9 @@ x <- rbind(matrix(rnorm(400, 3, 1), ncol = 2), matrix(rnorm(40, 4, 1), ncol = 2)
 y <- factor(rep(c("negative", "positive"), c(200, 20)))
 
 complexity_IR(y = y)
-#> Error in complexity_IR(y = y): could not find function "complexity_IR"
+#> [1] 10
 complexity_R_aug(x, y)
-#> Error in complexity_R_aug(x, y): could not find function "complexity_R_aug"
+#> [1] 0.9090909
 complexity_N3(x, y)
-#> Error in complexity_N3(x, y): could not find function "complexity_N3"
+#> [1] 0.1181818
 ```

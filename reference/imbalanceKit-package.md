@@ -19,6 +19,12 @@ and undersampling. The methods share the same interface: they take a
 feature matrix and a factor class variable and return the resampled data
 together with the synthetic samples.
 
+## See also
+
+Useful links:
+
+- <https://fatihsaglam.github.io/imbalanceKit/>
+
 ## Author
 
 **Maintainer**: Fatih Saglam <saglamf89@gmail.com>

@@ -1,4 +1,79 @@
 url: https://fatihsaglam.github.io/imbalanceKit/
+
 template:
   bootstrap: 5
+  bootswatch: flatly
+  bslib:
+    primary: "#2c5d8f"
+    base_font: {google: "Source Sans 3"}
+    heading_font: {google: "Source Sans 3"}
+    code_font: {google: "Fira Mono"}
 
+navbar:
+  structure:
+    left: [intro, reference, news]
+    right: [search, github]
+
+home:
+  title: Resampling Methods and Tools for Imbalanced Classification
+  links:
+    - text: Report a bug
+      href: https://github.com/fatihsaglam/imbalanceKit/issues
+
+reference:
+  - title: Methods of the author
+    desc: >
+      Resampling methods developed by the package author. All oversamplers take
+      a feature matrix and a factor class variable and return the resampled
+      data together with the synthetic samples.
+  - contents:
+      - SMOTEWB
+      - MCSMOTE
+      - BiSMOTE
+
+  - title: Procedures built on a base method
+    desc: >
+      DatRel moves synthetic samples back into their class region and can be
+      applied to samples from any source. UGO uses a base oversampler together
+      with a classifier.
+  - contents:
+      - DatRel
+      - oversampleDatRel
+      - UGO
+
+  - title: Other oversampling methods
+    desc: Listed by year of publication.
+  - contents:
+      - ROS
+      - SMOTE
+      - BLSMOTE
+      - ADASYN
+      - SLSMOTE
+      - RWO
+      - ROSE
+      - RSLSMOTE
+      - EBSMOTE
+      - GSMOTE
+      - SyMProD
+      - RadiusSMOTE
+      - GQEO
+      - LEAO
+      - VSSMOTE
+
+  - title: Undersampling
+  - contents:
+      - RUS
+
+  - title: Performance evaluation
+    desc: Metrics for imbalanced classification and a function that calculates several of them.
+  - contents:
+      - evaluate
+      - metrics
+
+  - title: Data complexity measures
+    desc: >
+      Measures of class imbalance, class overlap and noise, each as a separate
+      function and all together through `complexity()`.
+  - contents:
+      - complexity
+      - complexity_measures

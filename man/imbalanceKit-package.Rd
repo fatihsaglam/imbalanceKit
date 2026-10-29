@@ -8,6 +8,13 @@
 \description{
 A collection of resampling methods for class imbalance in classification problems. Includes the oversampling methods SMOTE with boosting (SMOTEWB) by F. Sağlam and M. A. Cengiz (2022) \doi{10.1016/j.eswa.2022.117023}, Markov chain SMOTE (MCSMOTE) by F. Sağlam and M. A. Cengiz (2025) \doi{10.1016/j.asoc.2025.113906}, uncertainty guided oversampling (UGO) by F. Sağlam and M. A. Cengiz (2026) \doi{10.1016/j.knosys.2026.115886}, and bi-directional SMOTE (BiSMOTE) by F. Sağlam and U. Yamak (2027) \doi{10.1016/j.eswa.2026.134648}, and the data relocation approach DatRel by F. Sağlam (2025) \doi{10.1007/s10994-025-06755-8}, together with commonly used alternatives such as SMOTE, ADASYN, Borderline-SMOTE, Safe-Level-SMOTE, geometric SMOTE, random oversampling and undersampling. The methods share the same interface: they take a feature matrix and a factor class variable and return the resampled data together with the synthetic samples.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://fatihsaglam.github.io/imbalanceKit/}
+}
+
+}
 \author{
 \strong{Maintainer}: Fatih Saglam \email{saglamf89@gmail.com} (\href{https://orcid.org/0000-0002-2084-2008}{ORCID})
 

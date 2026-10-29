@@ -40,16 +40,42 @@ export(SPECIFICITY)
 export(SyMProD)
 export(UGO)
 export(VSSMOTE)
+export(complexity)
+export(complexity_BORDERLINE)
+export(complexity_C1)
+export(complexity_C2)
+export(complexity_F1)
+export(complexity_F1v)
+export(complexity_F2)
+export(complexity_F3)
+export(complexity_F4)
+export(complexity_ID)
+export(complexity_IR)
+export(complexity_LSC)
+export(complexity_N1)
+export(complexity_N2)
+export(complexity_N3)
+export(complexity_N3_bal)
+export(complexity_N4)
+export(complexity_OUTLIER)
+export(complexity_R)
+export(complexity_RARE)
+export(complexity_R_aug)
+export(complexity_SAFE)
 export(evaluate)
 export(oversampleDatRel)
 import(rpart)
-importFrom(FNN,get.knnx)
-importFrom(FNN,knnx.index)
+importFrom(FNN,
+  get.knnx,
+  knnx.index
+)
 importFrom(Rfast,Dist)
-importFrom(stats,kruskal.test)
-importFrom(stats,oneway.test)
-importFrom(stats,predict)
-importFrom(stats,quantile)
-importFrom(stats,rnorm)
-importFrom(stats,runif)
-importFrom(stats,sd)
+importFrom(stats,
+  kruskal.test,
+  oneway.test,
+  predict,
+  quantile,
+  rnorm,
+  runif,
+  sd
+)

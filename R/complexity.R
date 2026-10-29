@@ -137,11 +137,6 @@
 #' complexity_N3(x, y)
 #'
 #' @name complexity_measures
-#' @aliases complexity_IR complexity_C1 complexity_C2 complexity_ID complexity_F1
-#' complexity_F1v complexity_F2 complexity_F3 complexity_F4 complexity_N1
-#' complexity_N2 complexity_N3 complexity_N3_bal complexity_N4 complexity_LSC
-#' complexity_R complexity_R_aug complexity_SAFE complexity_BORDERLINE
-#' complexity_RARE complexity_OUTLIER
 NULL
 
 cx_counts <- function(y) as.numeric(table(droplevels(as.factor(y))))

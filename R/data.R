@@ -1,0 +1,31 @@
+#' Banana data
+#'
+#' A two-dimensional, two-class imbalanced data set. The positive (minority)
+#' class and the negative (majority) class both have a curved, banana-like
+#' shape and overlap with each other, so the data set contains the usual
+#' difficulties of imbalanced classification: a small minority class, class
+#' overlap, noise and small disjuncts. It is used in the examples and the
+#' vignette of the package.
+#'
+#' @format A data frame with 2640 rows and 3 variables:
+#' \describe{
+#'   \item{At1}{first feature.}
+#'   \item{At2}{second feature.}
+#'   \item{Class}{factor with levels \code{"negative"} (2376 samples) and
+#'   \code{"positive"} (264 samples). The imbalance ratio is 9.}
+#' }
+#'
+#' @source The banana data set of the KEEL data set repository,
+#' \url{https://sci2s.ugr.es/keel/datasets.php}.
+#'
+#' @references
+#' Alcalá-Fdez, J., Fernández, A., Luengo, J., Derrac, J., García, S.,
+#' Sánchez, L., & Herrera, F. (2011). KEEL data-mining software tool: data set
+#' repository, integration of algorithms and experimental analysis framework.
+#' Journal of Multiple-Valued Logic and Soft Computing, 17(2-3), 255-287.
+#'
+#' @examples
+#' table(banana$Class)
+#' plot(banana$At1, banana$At2, col = ifelse(banana$Class == "positive", "red", "grey60"),
+#'      pch = 16, xlab = "At1", ylab = "At2")
+"banana"

@@ -34,9 +34,13 @@ LinkingTo:
 Suggests: 
     randomForest,
     nnet,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown
 License: MIT + file LICENSE
 Encoding: UTF-8
+LazyData: true
+VignetteBuilder: knitr
 Config/testthat/edition: 3
 URL: https://fatihsaglam.github.io/imbalanceKit/
 Config/roxygen2/version: 8.1.0

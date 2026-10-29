@@ -1,7 +1,7 @@
 Package: imbalanceKit
 Type: Package
 Title: Resampling Methods and Tools for Imbalanced Classification
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: 
     c(person("Fatih", "Saglam", email = "saglamf89@gmail.com", 
     role = c("aut", "cre"), 
@@ -35,4 +35,4 @@ Suggests:
 License: MIT + file LICENSE
 Encoding: UTF-8
 Config/testthat/edition: 3
-Config/roxygen2/version: 8.1.0
+RoxygenNote: 7.3.2

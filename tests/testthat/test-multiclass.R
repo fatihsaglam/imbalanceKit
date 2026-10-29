@@ -9,7 +9,7 @@ make_multiclass <- function(n = c(120, 40, 15), seed = 1) {
 
 resamplers <- c("ROS", "RWO", "ROSE", "SMOTE", "ADASYN", "BLSMOTE", "SLSMOTE",
                 "RSLSMOTE", "GSMOTE", "SMOTEWB", "BiSMOTE", "MCSMOTE", "EBSMOTE", "GQEO",
-                "LEAO", "SyMProD")
+                "LEAO", "SyMProD", "RadiusSMOTE", "VSSMOTE")
 
 test_that("all resamplers balance three classes", {
   d <- make_multiclass()

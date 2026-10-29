@@ -35,8 +35,10 @@ Every method name below is followed by the **year** of its publication.
 | 2019 | `GSMOTE()` | Geometric SMOTE | Douzas & Bacao (2019), *Information Sciences* |
 | 2019 | `EBSMOTE()` | Evaluation-based SMOTE | Hussein et al. (2019), *ISKE* |
 | 2020 | `SyMProD()` | Synthetic minority based on probabilistic distribution | Kunakorntum et al. (2020), *IEEE Access* |
+| 2021 | `RadiusSMOTE()` | Radius-SMOTE | Pradipta et al. (2021), *IEEE Access* |
 | 2022 | `SMOTEWB()` | SMOTE with boosting | Sağlam & Cengiz (2022), *Expert Systems with Applications* |
 | 2025 | `MCSMOTE()` | Markov chain (transition matrix driven) SMOTE | Sağlam & Cengiz (2025), *Applied Soft Computing* |
+| 2025 | `VSSMOTE()` | VS-SMOTE (high-value spaces) | Qiu et al. (2025), *Neurocomputing* |
 | 2025 | `GQEO()` | Quadrilateral element oversampling | Dai et al. (2025), *Neural Networks* |
 | 2025 | `LEAO()` | Local entropy-adversarial oversampling | Tao (2025), *Neurocomputing* |
 | 2027 | `BiSMOTE()` | Bi-directional SMOTE | Sağlam & Yamak (2027), *Expert Systems with Applications* |

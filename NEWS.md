@@ -1,3 +1,7 @@
+# imbalanceKit (development version)
+
+* New oversamplers `RadiusSMOTE()` (Pradipta et al., 2021) and `VSSMOTE()` (Qiu et al., 2025). Both work with more than two classes (one-versus-rest) and can be used as `method` in `oversampleDatRel()`.
+
 # imbalanceKit 0.1.0
 
 First release. `imbalanceKit` collects the resampling methods of the former

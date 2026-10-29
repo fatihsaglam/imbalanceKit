@@ -129,3 +129,27 @@ bibentry(
   pages = "114692--114704",
   textVersion = paste("Kunakorntum, I., Hinthong, W., & Phunchongharn, P. (2020). A synthetic minority based on probabilistic distribution (SyMProD) oversampling for imbalanced datasets. IEEE Access, 8, 114692-114704.")
 )
+
+bibentry(
+  bibtype = "Article",
+  header = "To cite the RadiusSMOTE method in publications use:",
+  title = "Radius-SMOTE: a new oversampling technique of minority samples based on radius distance for learning from imbalanced data",
+  author = c(person("G. A.", "Pradipta"), person("R.", "Wardoyo"), person("A.", "Musdholifah"), person("I. N. H.", "Sanjaya")),
+  journal = "IEEE Access",
+  year = "2021",
+  volume = "9",
+  pages = "74763--74777",
+  textVersion = paste("Pradipta, G. A., Wardoyo, R., Musdholifah, A., & Sanjaya, I. N. H. (2021). Radius-SMOTE: a new oversampling technique of minority samples based on radius distance for learning from imbalanced data. IEEE Access, 9, 74763-74777.")
+)
+
+bibentry(
+  bibtype = "Article",
+  header = "To cite the VSSMOTE method in publications use:",
+  title = "VS-SMOTE: Leveraging high-value spaces to balance noise control and data diversity for class imbalanced learning",
+  author = c(person("F.", "Qiu"), person("F.", "Yang"), person("Y.", "Xiong"), person("T.", "Chen"), person("P.", "Xiao"), person("W.", "Zheng"), person("K.", "Zhou")),
+  journal = "Neurocomputing",
+  year = "2025",
+  volume = "654",
+  pages = "131321",
+  textVersion = paste("Qiu, F., Yang, F., Xiong, Y., Chen, T., Xiao, P., Zheng, W., ... & Zhou, K. (2025). VS-SMOTE: Leveraging high-value spaces to balance noise control and data diversity for class imbalanced learning. Neurocomputing, 654, 131321.")
+)

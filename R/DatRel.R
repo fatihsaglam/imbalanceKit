@@ -113,7 +113,7 @@ DatRel <- function(x, y, x_syn, y_syn, proportion = 1, p_of = 0) {
 #' One of \code{"ROS"}, \code{"RWO"}, \code{"ROSE"}, \code{"SMOTE"},
 #' \code{"ADASYN"}, \code{"BLSMOTE"}, \code{"SLSMOTE"}, \code{"RSLSMOTE"},
 #' \code{"GSMOTE"}, \code{"SMOTEWB"}, \code{"BiSMOTE"}, \code{"MCSMOTE"},
-#' \code{"EBSMOTE"}, \code{"GQEO"}, \code{"LEAO"} or \code{"SyMProD"}.
+#' \code{"EBSMOTE"}, \code{"GQEO"}, \code{"LEAO"}, \code{"SyMProD"}, \code{"RadiusSMOTE"} or \code{"VSSMOTE"}.
 #' Default is \code{"SMOTE"}.
 #' @param ovRate Oversampling rate, as in the base method: class \eqn{j}
 #' receives \code{round(ovRate * (n_max - n_j))} synthetic samples. Default is 1.

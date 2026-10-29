@@ -88,7 +88,7 @@ get_generator <- function(method) {
   generators <- list(
     ROS = generate_ROS, RWO = generate_RWO, ROSE = generate_ROSE,
     SMOTE = generate_SMOTE, ADASYN = generate_ADASYN,
-    BLSMOTE = generate_BLSMOTE, SLSMOTE = generate_SLSMOTE,
+    BLSMOTE = generate_BLSMOTE, SLSMOTE = generate_SLSMOTE, RadiusSMOTE = generate_RadiusSMOTE, VSSMOTE = generate_VSSMOTE,
     RSLSMOTE = generate_RSLSMOTE, GSMOTE = generate_GSMOTE,
     SMOTEWB = generate_SMOTEWB, BiSMOTE = generate_BiSMOTE,
     MCSMOTE = generate_MCSMOTE, EBSMOTE = generate_EBSMOTE,

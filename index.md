@@ -4,10 +4,12 @@ Resampling methods and tools for imbalanced classification in R.
 
 `imbalanceKit` brings the resampling methods of the author together in
 one package. It continues the
-[SMOTEWB](https://CRAN.R-project.org/package=SMOTEWB) package and adds
-newer methods. All resamplers take a feature matrix `x` and a factor
-class variable `y`, and return a list with the resampled data (`x_new`,
-`y_new`) and the generated synthetic samples (`x_syn`, `y_syn`).
+[SMOTEWB](https://CRAN.R-project.org/package=SMOTEWB) package and also
+includes the data relocation approach of the `imbalanceDatRel` package,
+so that package is not needed any more. It adds newer methods. All
+resamplers take a feature matrix `x` and a factor class variable `y`,
+and return a list with the resampled data (`x_new`, `y_new`) and the
+generated synthetic samples (`x_syn`, `y_syn`).
 
 ## Installation
 

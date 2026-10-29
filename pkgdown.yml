@@ -3,7 +3,7 @@ pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   imbalanceKit: imbalanceKit.html
-last_built: 2026-10-29T10:06Z
+last_built: 2026-10-29T13:15Z
 urls:
   reference: https://fatihsaglam.github.io/imbalanceKit/reference
   article: https://fatihsaglam.github.io/imbalanceKit/articles

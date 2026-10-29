@@ -1,0 +1,139 @@
+# Changelog
+
+## imbalanceKit (development version)
+
+- Complexity measures for imbalance, overlap and noise: `IR`, `C1`,
+  `C2`, `ID`, `F1`, `F1v`, `F2`, `F3`, `F4`, `N1`-`N4`, `LSC`, `R`,
+  `R_aug` and the types of minority examples (`SAFE`, `BORDERLINE`,
+  `RARE`, `OUTLIER`), each as `complexity_<NAME>()`, and
+  [`complexity()`](https://fatihsaglam.github.io/imbalanceKit/reference/complexity.md)
+  for all or selected ones.
+- New oversamplers
+  [`RadiusSMOTE()`](https://fatihsaglam.github.io/imbalanceKit/reference/RadiusSMOTE.md)
+  (Pradipta et al., 2021) and
+  [`VSSMOTE()`](https://fatihsaglam.github.io/imbalanceKit/reference/VSSMOTE.md)
+  (Qiu et al., 2025). Both work with more than two classes
+  (one-versus-rest) and can be used as `method` in
+  [`oversampleDatRel()`](https://fatihsaglam.github.io/imbalanceKit/reference/oversampleDatRel.md).
+
+## imbalanceKit 0.1.0
+
+First release. `imbalanceKit` collects the resampling methods of the
+former `SMOTEWB` package (version 1.2.5) and extends them.
+
+### New methods
+
+- [`BiSMOTE()`](https://fatihsaglam.github.io/imbalanceKit/reference/BiSMOTE.md):
+  bi-directional SMOTE (Sağlam & Yamak).
+
+- [`MCSMOTE()`](https://fatihsaglam.github.io/imbalanceKit/reference/MCSMOTE.md):
+  transition matrix driven oversampling (Sağlam & Cengiz, 2025). Works
+  with more than two classes.
+
+- [`UGO()`](https://fatihsaglam.github.io/imbalanceKit/reference/UGO.md):
+  uncertainty guided oversampling (Sağlam & Cengiz, 2026), with `"RWO"`,
+  `"SMOTE"`, `"ROS"` and `"MCSMOTE"` as base methods. UGO is not a
+  resampler by itself but a procedure that uses a base method and a
+  classifier. The classifier is chosen with the `classifier` argument:
+  one of the seven built-in classifiers (`"CART"`, `"RF"`, `"LogReg"`,
+  `"KNN"`, `"NaiveBayes"`, `"LDA"`, `"NNET"`) or any function that
+  returns class probabilities. The old names `"rpart"` and
+  `"randomForest"` still work.
+
+- [`DatRel()`](https://fatihsaglam.github.io/imbalanceKit/reference/DatRel.md)
+  (Sağlam, 2025) is a post-processing method:
+  `DatRel(x, y, x_syn, y_syn)` moves synthetic samples from any source
+  that fall outside their class region back into it (pure and proper
+  class cover; works with more than two classes). The cover algorithm of
+  the `rcccd` package is included, so `rcccd` is not needed.
+  [`oversampleDatRel()`](https://fatihsaglam.github.io/imbalanceKit/reference/oversampleDatRel.md)
+  generates the samples with a base method first.
+
+- [`EBSMOTE()`](https://fatihsaglam.github.io/imbalanceKit/reference/EBSMOTE.md),
+  [`GQEO()`](https://fatihsaglam.github.io/imbalanceKit/reference/GQEO.md),
+  [`LEAO()`](https://fatihsaglam.github.io/imbalanceKit/reference/LEAO.md)
+  and
+  [`SyMProD()`](https://fatihsaglam.github.io/imbalanceKit/reference/SyMProD.md):
+  further oversamplers that need no deep learning libraries. The first,
+  third and fourth are defined for two classes; with more classes every
+  class is oversampled against the union of the others.
+  [`LEAO()`](https://fatihsaglam.github.io/imbalanceKit/reference/LEAO.md)
+  estimates class probabilities with bagged `rpart` trees, logistic
+  regression, k-nearest neighbours or naive Bayes (`prob_type`).
+
+### Documentation
+
+- The year of publication of every method is part of its help page title
+  and is listed in the README.
+- References were added for
+  [`EBSMOTE()`](https://fatihsaglam.github.io/imbalanceKit/reference/EBSMOTE.md),
+  [`GQEO()`](https://fatihsaglam.github.io/imbalanceKit/reference/GQEO.md),
+  [`LEAO()`](https://fatihsaglam.github.io/imbalanceKit/reference/LEAO.md)
+  and
+  [`SyMProD()`](https://fatihsaglam.github.io/imbalanceKit/reference/SyMProD.md)
+  (also in [`citation()`](https://rdrr.io/r/utils/citation.html)).
+
+### Metrics
+
+- [`evaluate()`](https://fatihsaglam.github.io/imbalanceKit/reference/evaluate.md)
+  calculates `ACC`, `BACC`, `F1`, `GMEAN`, `MCC`, `ROCAUC`, `PRAUC`,
+  `Brier`, `PBrier` (penalized), `BBrier` (balanced), `ECE`, `BECE`
+  (balanced), `P4` and `IAM` plus `PRECISION`, `RECALL`, `SPECIFICITY`,
+  `KAPPA` and `LOGLOSS`, or the selected ones. Each metric is also a
+  function of its own.
+- Metrics are defined for two or more classes; class-wise metrics have
+  an `average` argument (`"binary"`, `"macro"`, `"micro"`,
+  `"weighted"`).
+
+### Methods carried over from SMOTEWB 1.2.5
+
+[`ADASYN()`](https://fatihsaglam.github.io/imbalanceKit/reference/ADASYN.md),
+[`BLSMOTE()`](https://fatihsaglam.github.io/imbalanceKit/reference/BLSMOTE.md),
+[`GSMOTE()`](https://fatihsaglam.github.io/imbalanceKit/reference/GSMOTE.md),
+[`ROS()`](https://fatihsaglam.github.io/imbalanceKit/reference/ROS.md),
+[`ROSE()`](https://fatihsaglam.github.io/imbalanceKit/reference/ROSE.md),
+[`RSLSMOTE()`](https://fatihsaglam.github.io/imbalanceKit/reference/RSLSMOTE.md),
+[`RUS()`](https://fatihsaglam.github.io/imbalanceKit/reference/RUS.md),
+[`RWO()`](https://fatihsaglam.github.io/imbalanceKit/reference/RWO.md),
+[`SLSMOTE()`](https://fatihsaglam.github.io/imbalanceKit/reference/SLSMOTE.md),
+[`SMOTE()`](https://fatihsaglam.github.io/imbalanceKit/reference/SMOTE.md)
+and
+[`SMOTEWB()`](https://fatihsaglam.github.io/imbalanceKit/reference/SMOTEWB.md).
+
+### Changes compared with SMOTEWB 1.2.5
+
+- Every resampler is built from a `generate_<METHOD>()` function (one
+  class at a time) and a shared driver. Generation is vectorised, so the
+  methods are several times faster on large data. Because the random
+  numbers are now drawn in bulk, a seed no longer reproduces the output
+  of SMOTEWB 1.2.5
+  ([`ROS()`](https://fatihsaglam.github.io/imbalanceKit/reference/ROS.md)
+  and
+  [`ROSE()`](https://fatihsaglam.github.io/imbalanceKit/reference/ROSE.md)
+  still do); the distribution of the synthetic samples is unchanged.
+- All resamplers work with more than two classes.
+- `ovRate`: the number of synthetic samples is `ovRate * (n_max - n_j)`
+  rounded half up for every method (before:
+  [`round()`](https://rdrr.io/r/base/Round.html) for most,
+  [`ceiling()`](https://rdrr.io/r/base/Round.html) for BiSMOTE and UGO).
+  `ovRate` may also be a vector with one value per class and is
+  validated.
+- [`RUS()`](https://fatihsaglam.github.io/imbalanceKit/reference/RUS.md)
+  keeps the original row order and validates `n_neededToRemove`.
+
+### Fixes
+
+- `SMOTE(k = 1)` and `ADASYN(k = 1)` no longer fail; `k` larger than the
+  class size is reduced. Classes with a single sample are duplicated
+  with a warning.
+- [`ADASYN()`](https://fatihsaglam.github.io/imbalanceKit/reference/ADASYN.md)
+  returns exactly the required number of samples (it was off by a few
+  because of rounding) and its `C` is reported for every class.
+- [`RSLSMOTE()`](https://fatihsaglam.github.io/imbalanceKit/reference/RSLSMOTE.md)
+  used the neighbours of the first sample instead of those of the
+  current sample when relocating; fixed.
+- [`BLSMOTE()`](https://fatihsaglam.github.io/imbalanceKit/reference/BLSMOTE.md)
+  no longer modifies `k2` across classes and no longer loops forever
+  when too few borderline samples exist.
+- [`GSMOTE()`](https://fatihsaglam.github.io/imbalanceKit/reference/GSMOTE.md)
+  now returns `y_syn` as documented.
